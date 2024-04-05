@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --white-color: #ffffff;
+  --black-color: #000000;
+
+  --padding-5: 5px;
+  --padding-10: 10px;
+  --duration-short: .1s;
+}
+
+.txt-white {
+  color: var(--white-color);
+}
+
+.pd-5 {
+  padding: var(--padding-5);
+}
+.pd-10 {
+  padding: var(--padding-10);
+}

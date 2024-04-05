@@ -1,0 +1,16 @@
+.logout {
+  color: white;
+}
+.logout:hover {
+  color: red !important;
+}
+
+.navbar-nav .nav-link.active {
+  color: red !important;
+  font-weight: bold;
+}
+
+.dd-style{
+  background-color: transparent !important;
+  border: none !important;
+}
