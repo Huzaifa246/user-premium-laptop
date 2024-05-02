@@ -14,7 +14,7 @@ function HeaderComponent() {
     };
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark web-header">
             <div className="container-fluid">
                 <a className="navbar-brand txt-white" href="/">LAPTOP BRAND</a>
                 <button className="navbar-toggler" type="button" onClick={toggleNavbar}>

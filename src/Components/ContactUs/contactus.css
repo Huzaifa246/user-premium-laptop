@@ -1,0 +1,27 @@
+.contact-form-main {
+  padding-top: 36px;
+  padding-bottom: 36px;
+
+  max-width: 60%;
+  margin: 0 auto;
+}
+
+.field{
+    margin: 10px 0;
+}
+.field__input {
+  width: 100%;
+  font-size: 1.3rem;
+  line-height: calc(1 + 0.5 / var(--font-body-scale));
+  letter-spacing: 0.04rem;
+
+  background-color:  transparent;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 0.5rem 1rem;
+  margin: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.error_msg{
+    color: red !important;
+}
