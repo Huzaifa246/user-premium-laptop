@@ -10,9 +10,9 @@ const FeaturedProducts = () => {
     return (
         <>
             <div className='mx-5 mt-4'>
-                <h4>
+                <h3>
                     Featured products
-                </h4>
+                </h3>
                 <div className='d-flex flex-wrap'>
                     <FeaturedCards imageUrl1={Card4} imageUrl2={Card2}
                         productName="Asus ROG Strix"
