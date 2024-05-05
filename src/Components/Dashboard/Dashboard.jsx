@@ -6,9 +6,7 @@ import Card1 from "../../assets/images/card1.jpg";
 import Card2 from "../../assets/images/card2.jpg";
 import Card3 from "../../assets/images/card3.jpg";
 import Card4 from "../../assets/images/card4.jpg";
-import Card5 from "../../assets/images/card5.jpg";
 import FeaturedCards from './../FeaturedProduct/FeaturedCards';
-import "./dashboard.css";
 import Banner from '../ReuseableComponents/banner';
 import FeaturedProducts from '../FeaturedProduct/FeaturedProducts';
 import FaqsPage from './../Faqs/FaqsPage';
@@ -48,6 +46,13 @@ const Dashboard = () => {
       </div>
       <Banner imageUrl={banner2} buttonText="Shop All" />
       <FeaturedProducts />
+      <div className='d-flex justify-content-center my-4'>
+        <a href="/featured-products">
+          <button className='view-all-btn'>
+            View All
+          </button>
+        </a>
+      </div>
       <Banner imageUrl={banner3} buttonText={false} />
       <FaqsPage />
 

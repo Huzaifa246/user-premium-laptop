@@ -3,6 +3,9 @@ import { Route, Routes, Outlet } from 'react-router-dom';
 import LoginForm from '../Pages/Login/login';
 import HeaderComponent from '../Components/Header/header';
 import Dashboard from '../Components/Dashboard/Dashboard';
+import FeaturedProducts from '../Components/FeaturedProduct/FeaturedProducts';
+import Product from './../Components/FeaturedProduct/Product/Product';
+import SingleProduct from '../Components/FeaturedProduct/Product/SingleProduct';
 
 function LayoutRoute() {
   return (
@@ -11,7 +14,9 @@ function LayoutRoute() {
 
       <Route element={<WithHeader />}>
       <Route path="/" element={<Dashboard />} />
-        {/* <Route path="/laptop-list" element={<LaptopList />} /> */}
+      <Route path="/featured-products" element={<FeaturedProducts />} />
+      {/* <Route path="/featured-products/:productId" element={<Product />} /> */}
+      <Route path="/featured-products/:product" element={<SingleProduct />} />
       </Route>
     </Routes>
   );

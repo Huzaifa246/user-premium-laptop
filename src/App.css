@@ -34,7 +34,7 @@
   color: var(--white-color-op75) !important;
 }
 .txt-white {
-  color: var(--white-color);
+  color: var(--white-color) !important;
 }
 .pd-5 {
   padding: var(--padding-5);
@@ -58,7 +58,7 @@
   color: #333;
 }
 .bg-color {
-  background-color: var(--bg-black-121212);
+  background-color: var(--bg-black-121212) !important;
 }
 
 .default-white-btn {
@@ -86,7 +86,7 @@
   transform: scaleX(1.05);
   transition: transform var(--duration-short) ease;
 }
-.faq-main{
+.faq-main {
   text-align: center;
   padding: 2.5rem 5rem;
   line-height: 2.5;
@@ -95,7 +95,106 @@
   margin: 0 auto;
 }
 
-.ft-bottom-spacing{
+.ft-bottom-spacing {
   padding: 2% 8% 4% 8% !important;
   margin-bottom: 0 !important;
 }
+.h1-product-style {
+  font-size: 37.5px;
+  line-height: calc(1 + 0.3 / max(1, 1));
+  word-break: break-word;
+  font-weight: 400;
+}
+.p-my-store {
+  font-size: 1rem;
+  letter-spacing: 0.13rem;
+  line-height: calc(1 + 0.2 / 1.0);
+  margin-bottom: 0 !important;
+}
+.w-fit-content{
+  width: fit-content;
+}
+
+/* Buttons */
+.shop-all-btn {
+  max-width: 60rem;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 5px 30px;
+  border-radius: 24px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+  height: 45px;
+  letter-spacing: 0.25px;
+  transition: box-shadow var(--duration-short) ease;
+  background-color: var(--white-color);
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+.shop-all-btn:focus {
+  outline: none;
+}
+.shop-all-btn:hover {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 2px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 6px 10px 4px;
+}
+.shop-all-btn.gradient {
+  transform: perspective(0);
+}
+.add-to-cart{
+  max-width: 100% !important;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 5px 30px;
+  border-radius: 24px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+  height: 45px;
+  letter-spacing: 0.25px;
+  transition: box-shadow var(--duration-short) ease;
+  background-color: var(--white-color);
+  z-index: 1;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.view-all-btn{
+  max-width: 60rem;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 5px 30px;
+  border-radius: 24px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+  height: 45px;
+  letter-spacing: 0.25px;
+  transition: box-shadow var(--duration-short) ease;
+  background-color: var(--black-color);
+  color: var(--white-color);
+}
+
+.view-all-btn:hover {
+    box-shadow: rgba(60, 64, 67, 0.3) 0 2px 3px 0,
+      rgba(60, 64, 67, 0.15) 0 6px 10px 4px;
+  }
+
+/* Buttons ends */
+
+/* .zoom-image {
+  transition: transform 0.3s ease;
+}
+
+.zoom-image:hover {
+  transform: scale(1.4);
+  z-index: 100000;
+} */
