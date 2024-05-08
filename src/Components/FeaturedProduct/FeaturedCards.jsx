@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const FeaturedCards = ({ imageUrl1, imageUrl2, productName, productLink, price }) => {
+const FeaturedCards = ({ imageUrl1, imageUrl2, productName, productLink, price, ram, processor, year, brand }) => {
     const [hovered, setHovered] = useState(false);
 
     const handleHover = () => {
@@ -12,7 +12,7 @@ const FeaturedCards = ({ imageUrl1, imageUrl2, productName, productLink, price }
     };
     return (
         <>
-            <div className="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div className="col-12 mb-4">
                 <div style={{height: "300px"}}>
                     <img src={hovered ? imageUrl2 : imageUrl1} alt="banner"
                         className="feat-card-img img-fluid"

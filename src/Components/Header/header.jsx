@@ -23,7 +23,7 @@ function HeaderComponent() {
                 <div className={`collapse navbar-collapse justify-content-between ${isNavbarOpen ? 'show' : ''}`} id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className={`nav-link txt-white pd-5 ${location.pathname === '/dashboard' ? 'active' : ''}`} aria-current="page" href="/dashboard">Home</a>
+                            <a className={`nav-link txt-white pd-5 ${location.pathname === '/' ? 'active' : ''}`} aria-current="page" href="/">Home</a>
                         </li>
                         <li className="nav-item">
                             <Dropdown>

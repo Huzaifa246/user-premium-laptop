@@ -16,7 +16,7 @@ function LayoutRoute() {
       <Route path="/" element={<Dashboard />} />
       <Route path="/featured-products" element={<FeaturedProducts />} />
       {/* <Route path="/featured-products/:productId" element={<Product />} /> */}
-      <Route path="/featured-products/:product" element={<SingleProduct />} />
+      <Route path="/featured-products/:productId" element={<SingleProduct />} />
       </Route>
     </Routes>
   );
