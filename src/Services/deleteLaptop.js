@@ -1,7 +1,7 @@
 import axios from 'axios';
 async function deleteLaptopById(id) {
   try {
-    const response = await axios.delete(`http://localhost:3000/laptops/${id}`);
+    const response = await axios.delete(`https://laptop-inventory-backend.vercel.app/laptops/${id}`);
     return response;
   } catch (error) {
     console.error('Error deleting laptop:', error);

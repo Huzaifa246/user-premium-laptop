@@ -1,7 +1,7 @@
 import axios from 'axios';
 async function fetchAllLaptops() {
   try {
-    const response = await axios.get("http://localhost:3000/laptops")
+    const response = await axios.get("https://laptop-inventory-backend.vercel.app/laptops")
     const data = response.data;
     return data;
   } catch (error) {

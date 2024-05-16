@@ -2,7 +2,7 @@ import axios from 'axios';
 
 async function addLaptopApi(formData) {
     try {
-        const response = await axios.post(`http://localhost:3000/add-laptop`, formData);
+        const response = await axios.post(`https://laptop-inventory-backend.vercel.app/add-laptop`, formData);
         return response;
     } catch (error) {
         console.error('Error Adding laptop:', error);
