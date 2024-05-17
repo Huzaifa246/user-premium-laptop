@@ -108,10 +108,10 @@
 .p-my-store {
   font-size: 1rem;
   letter-spacing: 0.13rem;
-  line-height: calc(1 + 0.2 / 1.0);
+  line-height: calc(1 + 0.2 / 1);
   margin-bottom: 0 !important;
 }
-.w-fit-content{
+.w-fit-content {
   width: fit-content;
 }
 
@@ -148,7 +148,7 @@
 .shop-all-btn.gradient {
   transform: perspective(0);
 }
-.add-to-cart{
+.add-to-cart {
   max-width: 100% !important;
   border: none;
   border-radius: 0;
@@ -167,7 +167,7 @@
   font-weight: 500;
 }
 
-.view-all-btn{
+.view-all-btn {
   max-width: 60rem;
   border: none;
   border-radius: 0;
@@ -184,17 +184,60 @@
 }
 
 .view-all-btn:hover {
-    box-shadow: rgba(60, 64, 67, 0.3) 0 2px 3px 0,
-      rgba(60, 64, 67, 0.15) 0 6px 10px 4px;
-  }
-
-/* Buttons ends */
-
-/* .zoom-image {
-  transition: transform 0.3s ease;
+  box-shadow: rgba(60, 64, 67, 0.3) 0 2px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 6px 10px 4px;
 }
 
-.zoom-image:hover {
-  transform: scale(1.4);
-  z-index: 100000;
-} */
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 1s linear infinite;
+}
+.loader::before,
+.loader::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  animation: prixClipFix 2s linear infinite;
+}
+.loader::after {
+  transform: rotate3d(90, 90, 0, 180deg);
+  border-color: #3539fa;
+}
+.h-500 {
+  height: 500px;
+}
+.field {
+  margin: 10px 0;
+}
+.field__input {
+  width: 100%;
+  font-size: 1.3rem;
+  line-height: calc(1 + 0.5 / var(--font-body-scale));
+  letter-spacing: 0.04rem;
+
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 0.5rem 1rem;
+  margin: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+@media screen and (max-width: 768px) {
+  .mob-wrap {
+    flex-wrap: wrap;
+  }
+  .mob-card {
+    height: 100% !important;
+  }
+  .faq-main {
+    width: 100% !important;
+  }
+  .mob-h-100 {
+    height: 100% !important;
+  }
+}

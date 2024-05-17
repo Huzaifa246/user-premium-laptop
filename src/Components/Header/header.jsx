@@ -51,7 +51,6 @@ function HeaderComponent() {
 
                     <div className="ml-auto d-flex">
                         <FontAwesomeIcon icon={faSearch} className="cart-icon text-white pd-10" />
-                        <FontAwesomeIcon icon={faBagShopping} className="cart-icon text-white pd-10" />
                     </div>
                 </div>
             </div>

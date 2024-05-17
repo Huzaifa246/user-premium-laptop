@@ -5,10 +5,10 @@ import Card1 from "../../../assets/images/card3.jpg";
 import Footer from './../../Footer/footer';
 import { useParams } from 'react-router-dom';
 import ViewGetByIdApi from '../../../Services/ViewGetById';
+import Loader from '../../Loader/Loader';
 
 const SingleProduct = () => {
     const { productId } = useParams();
-    console.log(productId, "productId")
     const [productData, setProductData] = useState();
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
@@ -27,7 +27,11 @@ const SingleProduct = () => {
         fetchData();
     }, [productId]);
 
-    console.log(productData, "productData")
+    if (isLoading) {
+        return <div>
+            <Loader />
+        </div>;
+    }
     if (!productData) {
         return <div>Product not found.</div>;
     }
@@ -69,7 +73,7 @@ const SingleProduct = () => {
                         <h1 className='h1-product-style'>{name}</h1>
                         <h4>{price}</h4>
 
-                        <div className="my-2">
+                        {/* <div className="my-2">
                             <div>Quantity: </div>
                             <div className='border border-3 w-fit-content d-flex justify-content-between'>
                                 <Button variant="outline-secondary border-0">-</Button>
@@ -82,11 +86,12 @@ const SingleProduct = () => {
                                 />
                                 <Button variant="outline-secondary border-0">+</Button>
                             </div>
-                        </div>
+                        </div> */}
                         <a
                             href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`}
                             target="_blank"
                             rel="noopener noreferrer"
+                            className='text-decoration-none'
                         >
                             <div className="mb-5 d-flex flex-column">
                                 <button className='add-to-cart justify-content-center bg-color txt-white' >Buy it now</button>

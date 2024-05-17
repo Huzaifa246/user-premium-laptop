@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import FeaturedCards from './FeaturedCards';
 import { useNavigate } from 'react-router-dom';
 import fetchAllLaptops from '../../Services/getAllLaptops';
+import Loader from '../Loader/Loader';
 const FeaturedProducts = () => {
 
     const navigate = useNavigate();
@@ -36,24 +37,24 @@ const FeaturedProducts = () => {
                     Featured products
                 </h3>
                 {isLoading ? (
-                    <div>Loading...</div>
+                    <Loader />
                 ) : (
                     <>
-                    <div className='d-flex'>
-                        {products?.map((product) => (
-                            <div onClick={() =>handleProductClick(product)}>
-                                <FeaturedCards
-                                    key={product._id}
-                                    imageUrl1={product.imageUrls[0]}
-                                    imageUrl2={product.imageUrls[1] || product.imageUrls[0]}
-                                    productName={product.name}
-                                    productLink={product.id}
-                                    price={`$${product.price}`}
-                                    onClick={() => handleProductClick(product)}
-                                />
-                            </div>
-                        ))}
-                    </div>
+                        <div className='d-flex mob-wrap'>
+                            {products?.map((product) => (
+                                <div onClick={() => handleProductClick(product)}>
+                                    <FeaturedCards
+                                        key={product._id}
+                                        imageUrl1={product.imageUrls[0]}
+                                        imageUrl2={product.imageUrls[1] || product.imageUrls[0]}
+                                        productName={product.name}
+                                        productLink={product.id}
+                                        price={`$${product.price}`}
+                                        onClick={() => handleProductClick(product)}
+                                    />
+                                </div>
+                            ))}
+                        </div>
                     </>
                 )}
             </div>

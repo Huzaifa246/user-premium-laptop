@@ -3,7 +3,7 @@ import "../../App.css";
 const Footer = () => {
     return (
         <footer className='bg-color'>
-            <div className='d-flex justify-content-around txt-white-75 lh-lg pt-5'>
+            <div className='d-flex justify-content-around txt-white-75 lh-lg pt-5 px-1'>
                 <div className='list-none'>
                     <h4 className='mb-2'>AT ONLINE</h4>
                     <div>

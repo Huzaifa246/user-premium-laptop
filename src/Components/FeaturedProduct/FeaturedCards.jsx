@@ -13,7 +13,7 @@ const FeaturedCards = ({ imageUrl1, imageUrl2, productName, productLink, price, 
     return (
         <>
             <div className="col-12 mb-4">
-                <div style={{height: "300px"}}>
+                <div className='mob-card' style={{height: "300px"}}>
                     <img src={hovered ? imageUrl2 : imageUrl1} alt="banner"
                         className="feat-card-img img-fluid"
                         onMouseEnter={handleHover} onMouseLeave={handleMouseLeave} />
