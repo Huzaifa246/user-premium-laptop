@@ -1,16 +1,60 @@
-import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 import "./header.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBagShopping, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import fetchAllLaptops from '../../Services/getAllLaptops';
 
 function HeaderComponent() {
     const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+    const [isSearchVisible, setIsSearchVisible] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [laptops, setLaptops] = useState([]);
     const location = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchLaptops = async () => {
+            try {
+                const data = await fetchAllLaptops();
+                setLaptops(data);
+            } catch (error) {
+                console.error('Error fetching laptops:', error);
+            }
+        };
+
+        fetchLaptops();
+    }, []);
 
     const toggleNavbar = () => {
         setIsNavbarOpen(!isNavbarOpen);
+    };
+
+    const toggleSearchVisibility = () => {
+        setIsSearchVisible(!isSearchVisible);
+    };
+
+    const handleInputChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
+    const handleSearch = () => {
+        if (searchQuery.trim()) {
+            const filteredLaptop = laptops.filter(laptop =>
+                laptop?.name?.toLowerCase().includes(searchQuery.toLowerCase())
+                ||
+                laptop?.brand?.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+            console.log(filteredLaptop)
+            navigate(`/search?query=${searchQuery}`, { state: { results: filteredLaptop } });
+        }
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleSearch();
+        }
     };
 
     return (
@@ -49,8 +93,22 @@ function HeaderComponent() {
                         </li>
                     </ul>
 
-                    <div className="ml-auto d-flex">
-                        <FontAwesomeIcon icon={faSearch} className="cart-icon text-white pd-10" />
+                    <div className="ml-auto d-flex align-items-center">
+                        {isSearchVisible && (
+                            <input
+                                type="text"
+                                value={searchQuery}
+                                onChange={handleInputChange}
+                                onKeyDown={handleKeyDown}
+                                placeholder="Search Name Or Brand..."
+                                className="field__input smooth-transition"
+                            />
+                        )}
+                        <FontAwesomeIcon
+                            icon={faSearch}
+                            className="cart-icon text-white pd-10"
+                            onClick={toggleSearchVisibility}
+                        />
                     </div>
                 </div>
             </div>

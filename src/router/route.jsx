@@ -6,6 +6,7 @@ import Dashboard from '../Components/Dashboard/Dashboard';
 import FeaturedProducts from '../Components/FeaturedProduct/FeaturedProducts';
 import Product from './../Components/FeaturedProduct/Product/Product';
 import SingleProduct from '../Components/FeaturedProduct/Product/SingleProduct';
+import SearchResultsComponent from '../Components/ReuseableComponents/SearchResultComponent';
 
 function LayoutRoute() {
   return (
@@ -17,6 +18,7 @@ function LayoutRoute() {
       <Route path="/featured-products" element={<FeaturedProducts />} />
       {/* <Route path="/featured-products/:productId" element={<Product />} /> */}
       <Route path="/featured-products/:productId" element={<SingleProduct />} />
+      <Route path="/search" element={<SearchResultsComponent />} />
       </Route>
     </Routes>
   );
