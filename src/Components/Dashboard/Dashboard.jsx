@@ -14,14 +14,14 @@ import DashboardSingleProduct from './../FeaturedProduct/DashboardSingleProduct'
 const Dashboard = () => {
   return (
     <>
-      <Banner imageUrl={banner6} buttonText="Shop All" link="/featured-products" />
+      <Banner imageUrl={banner6} buttonText="Shop All" link="/filtered-products" />
       {/* <Banner imageUrl={banner7} buttonText="Shop All" />
       <Banner imageUrl={banner5} buttonText="Shop All" /> */}
       <DashboardSingleProduct />
-      <Banner imageUrl={banner3} buttonText="Shop All" link="/featured-products" />
+      <Banner imageUrl={banner3} buttonText="Shop All" link="/filtered-products" />
       <FeaturedProducts />
       <div className='d-flex justify-content-center my-4'>
-        <Link to="/featured-products">
+        <Link to="/filtered-products">
           <button className='view-all-btn'>
             View All
           </button>

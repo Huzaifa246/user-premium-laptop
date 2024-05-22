@@ -65,7 +65,7 @@ function HeaderComponent() {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className={`collapse navbar-collapse justify-content-between ${isNavbarOpen ? 'show' : ''}`} id="navbarNav">
-                    <ul className="navbar-nav">
+                    <ul className="navbar-nav d-flex align-items-center">
                         <li className="nav-item">
                             <a className={`nav-link txt-white pd-5 ${location.pathname === '/' ? 'active' : ''}`} aria-current="page" href="/">Home</a>
                         </li>
@@ -76,12 +76,12 @@ function HeaderComponent() {
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <Dropdown.Item href="/collections/hp">HP</Dropdown.Item>
-                                    <Dropdown.Item href="/collections/dell">DELL</Dropdown.Item>
-                                    <Dropdown.Item href="/collections/lenovo">LENOVO</Dropdown.Item>
-                                    <Dropdown.Item href="/collections/apple">APPLE</Dropdown.Item>
-                                    <Dropdown.Item href="/collections/asus">ASUS</Dropdown.Item>
-                                    <Dropdown.Item href="/collections/acer">ACER</Dropdown.Item>
+                                    <Dropdown.Item href="/">HP</Dropdown.Item>
+                                    <Dropdown.Item href="/">DELL</Dropdown.Item>
+                                    <Dropdown.Item href="/">LENOVO</Dropdown.Item>
+                                    <Dropdown.Item href="/">APPLE</Dropdown.Item>
+                                    <Dropdown.Item href="/">ASUS</Dropdown.Item>
+                                    <Dropdown.Item href="/">ACER</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </li>
@@ -93,7 +93,7 @@ function HeaderComponent() {
                         </li>
                     </ul>
 
-                    <div className="ml-auto d-flex align-items-center">
+                    <div className="ml-auto d-flex align-items-center justify-content-center">
                         {isSearchVisible && (
                             <input
                                 type="text"
