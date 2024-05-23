@@ -154,7 +154,7 @@ const FilterProductPage = () => {
                 {isLoading ? (
                     <Loader />
                 ) : (
-                    <div className='d-flex mob-wrap mt-5'>
+                    <div className='d-flex flex-wrap mob-wrap mt-5'>
                         {filteredAndSortedProducts.map((product) => (
                             <div key={product._id} onClick={() => handleProductClick(product)}>
                                 <FeaturedCards

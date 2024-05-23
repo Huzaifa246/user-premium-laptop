@@ -40,7 +40,7 @@ const FeaturedProducts = () => {
                     <Loader />
                 ) : (
                     <>
-                        <div className='d-flex mob-wrap'>
+                        <div className='d-flex flex-wrap'>
                             {products?.map((product) => (
                                 <div onClick={() => handleProductClick(product)}>
                                     <FeaturedCards
