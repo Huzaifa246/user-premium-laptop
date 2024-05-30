@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Badge } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is imported
 import Card1 from "../../../assets/images/card3.jpg";
 import Footer from './../../Footer/footer';
@@ -11,12 +11,15 @@ const SingleProduct = () => {
     const { productId } = useParams();
     const [productData, setProductData] = useState();
     const [isLoading, setIsLoading] = useState(true);
+    const [selectedVariants, setSelectedVariants] = useState([]);
+    const [updatedPrice, setUpdatedPrice] = useState(0);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await ViewGetByIdApi(productId);
-                console.log(response.data, "Fetching")
                 setProductData(response.data);
+                setUpdatedPrice(response.data.price);
             } catch (error) {
                 console.error('Error fetching product:', error);
             } finally {
@@ -27,6 +30,22 @@ const SingleProduct = () => {
         fetchData();
     }, [productId]);
 
+    const handleVariantClick = (variant) => {
+        const isSelected = selectedVariants.includes(variant.name);
+        let newSelectedVariants;
+        let newPrice = updatedPrice;
+
+        if (isSelected) {
+            newSelectedVariants = selectedVariants.filter(v => v !== variant.name);
+            newPrice -= variant.additionalPrice;
+        } else {
+            newSelectedVariants = [...selectedVariants, variant.name];
+            newPrice += variant.additionalPrice;
+        }
+
+        setSelectedVariants(newSelectedVariants);
+        setUpdatedPrice(newPrice);
+    };
     if (isLoading) {
         return <div>
             <Loader />
@@ -51,6 +70,7 @@ const SingleProduct = () => {
         camera,
         gps,
         batteryCapacity,
+        variants
     } = productData;
 
     const whatsappNumber = "+923000419226";
@@ -71,22 +91,21 @@ const SingleProduct = () => {
                     <Col xs={12} md={4}>
                         <p className='p-my-store'><sub>MY STORE</sub></p>
                         <h1 className='h1-product-style'>{name}</h1>
-                        <h4>{price}</h4>
-
-                        {/* <div className="my-2">
-                            <div>Quantity: </div>
-                            <div className='border border-3 w-fit-content d-flex justify-content-between'>
-                                <Button variant="outline-secondary border-0">-</Button>
-                                <input
-                                    type="number"
-                                    value="1"
-                                    className="border-0"
-                                    readOnly
-                                    style={{ width: "30px", textAlign: "center" }}
-                                />
-                                <Button variant="outline-secondary border-0">+</Button>
-                            </div>
-                        </div> */}
+                        {/* <h4>{price}</h4> */}
+                        <h4>Rs. {updatedPrice}</h4>
+                        <div className="my-3">
+                            {variants?.map((variant, index) => (
+                                <Badge
+                                    key={index}
+                                    className="m-1"
+                                    bg={selectedVariants.includes(variant.name) ? 'primary' : 'secondary'}
+                                    onClick={() => handleVariantClick(variant)}
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    {variant.name} +Rs. {variant.additionalPrice}
+                                </Badge>
+                            ))}
+                        </div>
                         <a
                             href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`}
                             target="_blank"

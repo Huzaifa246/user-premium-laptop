@@ -20,7 +20,6 @@ const FilterProductPage = () => {
                 const data = await fetchAllLaptops();
                 const formattedData = data.map(product => ({
                     ...product,
-                    price: parseFloat(product.price.replace(/[^0-9.-]+/g, "")) // Remove non-numeric characters and convert to number
                 }));
                 setProducts(formattedData);
             } catch (error) {
