@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import fetchAllLaptops from '../../Services/getAllLaptops';
 import Loader from '../Loader/Loader';
-import FeaturedCards from '../FeaturedProduct/FeaturedCards';
 import Footer from '../Footer/footer';
+import { Container, Row, Col, Dropdown, Form, Button, Badge } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const FilterProductPage = () => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [sortOption, setSortOption] = useState(''); // State to store the selected sort option
-    const [minPrice, setMinPrice] = useState(''); // State to store the minimum price filter
-    const [maxPrice, setMaxPrice] = useState(''); // State to store the maximum price filter
-    const [showDropdown, setShowDropdown] = useState(false); // State to control dropdown visibility
+    const [sortOption, setSortOption] = useState('');
+    const [minPrice, setMinPrice] = useState('');
+    const [maxPrice, setMaxPrice] = useState('');
+    const [showDropdown, setShowDropdown] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -51,8 +52,7 @@ const FilterProductPage = () => {
 
     const handlePriceRangeSubmit = (e) => {
         e.preventDefault();
-        setShowDropdown(false); // Close the dropdown after applying price range
-        // Handle price range filtering here
+        setShowDropdown(false);
     };
 
     const handleResetClick = () => {
@@ -91,83 +91,81 @@ const FilterProductPage = () => {
 
     return (
         <>
-            <div className='mx-3 mt-4'>
+            <Container className='mx-3 mt-4'>
                 <h3>Filtered products</h3>
                 <div className='d-flex justify-content-between align-items-center mb-3'>
                     <div className='d-flex flex-column'>
-                        <span className='py-1'>
-                            Filter by:
-                        </span>
-                        <div className="dropdown ml-3 select-dd">
-                            <button
-                                className="btn btn-light dropdown-toggle"
-                                type="button"
-                                id="priceRangeDropdown"
-                                onClick={toggleDropdown}
-                            >
+                        <span className='py-1'>Filter by:</span>
+                        <Dropdown className="ml-3 select-dd">
+                            <Dropdown.Toggle variant="light" id="priceRangeDropdown">
                                 Price Range
-                            </button>
-                            {showDropdown && (
-                                <div className="dropdown-menu dropdown-menu-right show" aria-labelledby="priceRangeDropdown">
-                                    <form onSubmit={handlePriceRangeSubmit} className="px-3 py-3">
-                                        <div className="form-group">
-                                            <label htmlFor="minPrice">Min Price:</label>
-                                            <input
-                                                type="number"
-                                                className="form-control"
-                                                id="minPrice"
-                                                value={minPrice}
-                                                onChange={handleMinPriceChange}
-                                                placeholder="Min price"
-                                            />
-                                        </div>
-                                        <div className="form-group">
-                                            <label htmlFor="maxPrice">Max Price:</label>
-                                            <input
-                                                type="number"
-                                                className="form-control"
-                                                id="maxPrice"
-                                                value={maxPrice}
-                                                onChange={handleMaxPriceChange}
-                                                placeholder="Max price"
-                                            />
-                                        </div>
-                                        <button type="button" className="btn btn-danger" onClick={handleResetClick}>Reset</button>
-                                    </form>
-                                </div>
-                            )}
-                        </div>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu show={showDropdown} onMouseLeave={() => setShowDropdown(false)}>
+                                <Form onSubmit={handlePriceRangeSubmit} className="px-3 py-3">
+                                    <Form.Group controlId="minPrice">
+                                        <Form.Label>Min Price:</Form.Label>
+                                        <Form.Control
+                                            type="number"
+                                            value={minPrice}
+                                            onChange={handleMinPriceChange}
+                                            placeholder="Min price"
+                                        />
+                                    </Form.Group>
+                                    <Form.Group controlId="maxPrice" className="mt-2">
+                                        <Form.Label>Max Price:</Form.Label>
+                                        <Form.Control
+                                            type="number"
+                                            value={maxPrice}
+                                            onChange={handleMaxPriceChange}
+                                            placeholder="Max price"
+                                        />
+                                    </Form.Group>
+                                    <Button variant="danger" className="mt-3" onClick={handleResetClick}>Reset</Button>
+                                </Form>
+                            </Dropdown.Menu>
+                        </Dropdown>
                     </div>
                     <div className='d-flex flex-column'>
-                        <label htmlFor="sortOptions" className="py-1">Sort by: </label>
-                        <select id="sortOptions" value={sortOption} onChange={handleSortChange}
-                        className='p-2 select-dd'
-                        >
+                        <label htmlFor="sortOptions" className="py-1">Sort by:</label>
+                        <Form.Select id="sortOptions" value={sortOption} onChange={handleSortChange} className='p-2 select-dd'>
                             <option value="">Select</option>
                             <option value="priceHighToLow">Price: High to Low</option>
                             <option value="priceLowToHigh">Price: Low to High</option>
                             <option value="alphabetical">Alphabetical</option>
-                        </select>
+                        </Form.Select>
                     </div>
                 </div>
                 {isLoading ? (
                     <Loader />
                 ) : (
-                    <div className='d-flex flex-wrap mob-wrap mt-5'>
+                    <Row className='d-flex flex-wrap mob-wrap mt-5'>
                         {filteredAndSortedProducts.map((product) => (
-                            <div key={product._id} onClick={() => handleProductClick(product)}>
-                                <FeaturedCards
-                                    imageUrl1={product.imageUrls[0]}
-                                    imageUrl2={product.imageUrls[1] || product.imageUrls[0]}
-                                    productName={product.name}
-                                    productLink={product.id}
-                                    price={`$${product.price}`}
-                                />
-                            </div>
+                            <Col key={product._id} xs={12} sm={6} md={4} lg={4} className="mb-4">
+                                <div className="card h-100 shadow-sm" onClick={() => handleProductClick(product)}>
+                                    <Badge
+                                        bg="danger"
+                                        className="position-absolute top-0 start-0 m-2"
+                                        style={{ zIndex: 1 }}
+                                    >
+                                        10% OFF
+                                    </Badge>
+                                    <img src={product.imageUrls[0]} alt={product.name} className="card-img-top img-fluid" />
+                                    <div className="card-body">
+                                        <h5 className="card-title">{product.name}</h5>
+                                        <p className="card-text">{product.ram} RAM</p>
+                                        <p className="card-text">{product.processor}</p>
+                                        <p className="card-text">{product.year}</p>
+                                        <p className="card-text">Brand: {product.brand}</p>
+                                        <div className="d-flex justify-content-between align-items-center">
+                                            <span className="text-primary fw-bold">Rs:{product.price}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Col>
                         ))}
-                    </div>
+                    </Row>
                 )}
-            </div>
+            </Container>
             <Footer />
         </>
     );

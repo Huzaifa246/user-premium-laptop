@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Product.css';
 import { useParams } from 'react-router-dom';
 
@@ -22,7 +22,7 @@ const Product = () => {
             <img className="product-image" src={image} alt={name} />
             <div className="product-info">
                 <h2>{name}</h2>
-                <p className="product-price">Price: ${price}</p>
+                <p className="product-price">Price: Rs{price}</p>
                 <ul className="product-specs">
                     {specs.map((spec) => (
                         <li key={spec.name}>{spec.name}: {spec.value}</li>

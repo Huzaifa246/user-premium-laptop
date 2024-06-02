@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import FeaturedCards from './FeaturedCards';
 import { useNavigate } from 'react-router-dom';
 import fetchAllLaptops from '../../Services/getAllLaptops';
 import Loader from '../Loader/Loader';
+import { Container, Row } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const FeaturedProducts = () => {
-
     const navigate = useNavigate();
-
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -30,36 +31,32 @@ const FeaturedProducts = () => {
         console.log('Navigating to:', productDetailsLink);
         navigate(productDetailsLink);
     };
-    return (
-        <>
-            <div className='mx-5 mt-4'>
-                <h3>
-                    Featured products
-                </h3>
-                {isLoading ? (
-                    <Loader />
-                ) : (
-                    <>
-                        <div className='d-flex flex-wrap'>
-                            {products?.map((product) => (
-                                <div onClick={() => handleProductClick(product)}>
-                                    <FeaturedCards
-                                        key={product._id}
-                                        imageUrl1={product.imageUrls[0]}
-                                        imageUrl2={product.imageUrls[1] || product.imageUrls[0]}
-                                        productName={product.name}
-                                        productLink={product.id}
-                                        price={`$${product.price}`}
-                                        onClick={() => handleProductClick(product)}
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    </>
-                )}
-            </div>
-        </>
-    )
-}
 
-export default FeaturedProducts
+    return (
+        <Container>
+            <h3 className="mt-4">Featured Products</h3>
+            {isLoading ? (
+                <Loader />
+            ) : (
+                <Row>
+                    {products.map((product) => (
+                        <FeaturedCards
+                            key={product._id}
+                            imageUrl1={product.imageUrls[0]}
+                            imageUrl2={product.imageUrls[1] || product.imageUrls[0]}
+                            productName={product.name}
+                            productLink={`/featured-products/${product._id}`}
+                            price={`Rs. ${product.price}`}
+                            ram={product.ram}
+                            processor={product.processor}
+                            year={product.year}
+                            brand={product.brand}
+                        />
+                    ))}
+                </Row>
+            )}
+        </Container>
+    );
+};
+
+export default FeaturedProducts;
