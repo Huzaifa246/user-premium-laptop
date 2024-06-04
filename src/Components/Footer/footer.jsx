@@ -22,20 +22,20 @@ const Footer = () => {
                 <div className='list-none'>
                     <h4 className='mb-2'>Brands</h4>
                     <ul className='list-none' style={{ paddingLeft: "0" }}>
-                        <li className='ftSize-16 fw-bold'><a href="/collections/hp" className='txt-white-75 text-decoration-none'>HP</a></li>
-                        <li className='ftSize-16 fw-bold'><a href="/collections/dell" className='txt-white-75 text-decoration-none'>DELL</a></li>
-                        <li className='ftSize-16 fw-bold'><a href="/collections/lenovo" className='txt-white-75 text-decoration-none'>LENOVO</a></li>
-                        <li className='ftSize-16 fw-bold'><a href="/collections/apple" className='txt-white-75 text-decoration-none'>APPLE</a></li>
+                        <li className='ftSize-16 fw-bold'><Link to="/collections/hp" className='txt-white-75 text-decoration-none'>HP</Link></li>
+                        <li className='ftSize-16 fw-bold'><Link to="/collections/dell" className='txt-white-75 text-decoration-none'>DELL</Link></li>
+                        <li className='ftSize-16 fw-bold'><Link to="/collections/lenovo" className='txt-white-75 text-decoration-none'>LENOVO</Link></li>
+                        <li className='ftSize-16 fw-bold'><Link to="/collections/apple" className='txt-white-75 text-decoration-none'>APPLE</Link></li>
                     </ul>
                 </div>
                 <div className='list-none'>
                     <h4 className='mb-2'>Help</h4>
                     <ul className='list-none'></ul>
-                    <li className='ftSize-16 fw-bold'><a href="/pages/about-us" className='txt-white-75 text-decoration-none'>About Us</a></li>
-                    <li className='ftSize-16 fw-bold'><a href="/pages/contact" className='txt-white-75 text-decoration-none'>Contact</a></li>
+                    <li className='ftSize-16 fw-bold'><Link to="/pages/about-us" className='txt-white-75 text-decoration-none'>About Us</Link></li>
+                    <li className='ftSize-16 fw-bold'><Link to="/pages/contact" className='txt-white-75 text-decoration-none'>Contact</Link></li>
                 </div>
                 <div>
-                    <a href="https://web.facebook.com/atonline.com.pk/" class="link list-social__link">
+                    <Link to="https://web.facebook.com/atonline.com.pk/" class="link list-social__link">
                         <svg
                             aria-hidden="true" focusable="false" className="icon-style" viewBox="0 0 20 20">
                             <path fill="currentColor"
@@ -43,8 +43,8 @@ const Footer = () => {
                             </path>
                         </svg>
                         <span class="visually-hidden">Facebook</span>
-                    </a>
-                    <a href="" className='px-2'>
+                    </Link>
+                    <Link to="" className='px-2'>
                         <svg aria-hidden="true" focusable="false" className="icon-style"
                             viewBox="0 0 20 20">
                             <path fill="currentColor" fill-rule="evenodd"
@@ -52,7 +52,7 @@ const Footer = () => {
                                 clip-rule="evenodd"></path>
                         </svg>
                         <span class="visually-hidden">Instagram</span>
-                    </a>
+                    </Link>
                 </div>
             </div>
             <div className='d-flex justify-content-between' style={{ padding: "4% 8% 4% 8%" }}>
@@ -68,7 +68,7 @@ const Footer = () => {
                     </Link>
                 </div>
                 <div>
-                    <a href="https://web.facebook.com/atonline.com.pk/" class="link list-social__link">
+                    <Link to="https://web.facebook.com/atonline.com.pk/" class="link list-social__link">
                         <svg
                             aria-hidden="true" focusable="false" className="icon-style" viewBox="0 0 20 20">
                             <path fill="currentColor"
@@ -76,8 +76,8 @@ const Footer = () => {
                             </path>
                         </svg>
                         <span class="visually-hidden">Facebook</span>
-                    </a>
-                    <a href="" className='px-2'>
+                    </Link>
+                    <Link to="" className='px-2'>
                         <svg aria-hidden="true" focusable="false" className="icon-style"
                             viewBox="0 0 20 20">
                             <path fill="currentColor" fill-rule="evenodd"
@@ -85,7 +85,7 @@ const Footer = () => {
                                 clip-rule="evenodd"></path>
                         </svg>
                         <span class="visually-hidden">Instagram</span>
-                    </a>
+                    </Link>
                 </div>
             </div>
             <hr className='txt-white' />

@@ -5,6 +5,7 @@ import Loader from '../Loader/Loader';
 import Footer from '../Footer/footer';
 import { Container, Row, Col, Dropdown, Form, Button, Badge } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import card3 from '../../assets/images/card3.jpg';
 
 const FilterProductPage = () => {
     const navigate = useNavigate();
@@ -14,6 +15,7 @@ const FilterProductPage = () => {
     const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
     const [showDropdown, setShowDropdown] = useState(false);
+    const [selectedBrands, setSelectedBrands] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -59,9 +61,17 @@ const FilterProductPage = () => {
         setMinPrice('');
         setMaxPrice('');
     };
+    const handleResetBrandClick = () => {
+        setSelectedBrands([]);
+    };
 
-    const toggleDropdown = () => {
-        setShowDropdown(!showDropdown);
+    const handleBrandChange = (e) => {
+        const brand = e.target.value;
+        setSelectedBrands(
+            selectedBrands.includes(brand)
+                ? selectedBrands.filter(b => b !== brand)
+                : [...selectedBrands, brand]
+        );
     };
 
     const sortProducts = (products, option) => {
@@ -86,12 +96,19 @@ const FilterProductPage = () => {
         });
     };
 
-    const sortedProducts = sortProducts(products, sortOption);
-    const filteredAndSortedProducts = filterProductsByPriceRange(sortedProducts, minPrice, maxPrice);
+    const filterProductsByBrand = (products, selectedBrands) => {
+        if (selectedBrands.length === 0) return products;
+        return products.filter(product => selectedBrands.includes(product.brand));
+    };
 
+    const sortedProducts = sortProducts(products, sortOption);
+    const filteredProductsByPrice = filterProductsByPriceRange(sortedProducts, minPrice, maxPrice);
+    const filteredAndSortedProducts = filterProductsByBrand(filteredProductsByPrice, selectedBrands);
+
+    const uniqueBrands = [...new Set(products.map(product => product.brand))];
     return (
         <>
-            <Container className='mx-3 mt-4'>
+            <Container className='mt-4'>
                 <h3>Filtered products</h3>
                 <div className='d-flex justify-content-between align-items-center mb-3'>
                     <div className='d-flex flex-column'>
@@ -126,6 +143,30 @@ const FilterProductPage = () => {
                         </Dropdown>
                     </div>
                     <div className='d-flex flex-column'>
+                        <label htmlFor="brandFilter" className="py-1">Filter by Brand:</label>
+                        <Dropdown className="ml-3 select-dd">
+                            <Dropdown.Toggle variant="light" id="brandDropdown">
+                                Select Brands
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu show={showDropdown} onMouseLeave={() => setShowDropdown(false)}>
+                                <Form.Group controlId="brandFilter" className="px-3 py-3">
+                                    {uniqueBrands.map(brand => (
+                                        <Form.Check
+                                            type="checkbox"
+                                            label={brand}
+                                            value={brand}
+                                            key={brand}
+                                            checked={selectedBrands.includes(brand)}
+                                            onChange={handleBrandChange}
+                                            className="m-2"
+                                        />
+                                    ))}
+                                <Button variant="danger" className="mt-3" onClick={handleResetBrandClick}>Reset</Button>
+                                </Form.Group>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </div>
+                    <div className='d-flex flex-column'>
                         <label htmlFor="sortOptions" className="py-1">Sort by:</label>
                         <Form.Select id="sortOptions" value={sortOption} onChange={handleSortChange} className='p-2 select-dd'>
                             <option value="">Select</option>
@@ -149,7 +190,7 @@ const FilterProductPage = () => {
                                     >
                                         10% OFF
                                     </Badge>
-                                    <img src={product.imageUrls[0]} alt={product.name} className="card-img-top img-fluid" />
+                                    <img src={product.imageUrls[0] || card3} alt={product.name} className="card-img-top img-fluid" />
                                     <div className="card-body">
                                         <h5 className="card-title">{product.name}</h5>
                                         <p className="card-text">{product.ram} RAM</p>
