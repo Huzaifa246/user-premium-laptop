@@ -22,7 +22,7 @@ function LayoutRoute() {
   );
 }
 
-function WithHeader({ children }) {
+function WithHeader() {
   return (
     <>
       <HeaderComponent />
