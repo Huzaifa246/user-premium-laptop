@@ -8,5 +8,4 @@ async function fetchAllLaptops() {
     console.error('Error fetching data at Investments:', error);
   }
 }
-
 export default fetchAllLaptops;
