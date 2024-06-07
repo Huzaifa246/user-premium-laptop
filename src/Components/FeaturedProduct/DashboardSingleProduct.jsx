@@ -40,9 +40,13 @@ const DashboardSingleProduct = () => {
     return (
         <Container>
             <Row className="my-4">
-                <h2>
-                    Trending Product 🔥
-                </h2>
+                <main className="container_text">
+                    <section className="animation">
+                        <div className="first"><div>Trending Product 🔥</div></div>
+                        <div className="second"><div>Latest Laptop 🔥</div></div>
+                        <div className="third"><div>Best Deals 🔥</div></div>
+                    </section>
+                </main>
                 <Col xs={12} md={8} className="text-center">
                     <img
                         src={product.imageUrls[0]}
