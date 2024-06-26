@@ -58,7 +58,7 @@ const DashboardSingleProduct = () => {
                 {/* Right section with product details */}
                 <Col xs={12} md={4}>
                     <p className='p-my-store'><sub>MY STORE</sub></p>
-                    <h1 className='h1-product-style'>{product.name}</h1>
+                    <h1 className='h1-product-style gradient-text'>{product.name}</h1>
                     <h4>{product.price}</h4>
 
                     <a

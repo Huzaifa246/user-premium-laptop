@@ -335,6 +335,30 @@
   100% { margin-top: 0; }
 }
 
+.gradient-text {
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-block: 0;
+  transition: background-position 1.8s ease-out;
+  background-size: 200% 100%;
+  background-position: 100% 0%;
+  position: relative;
+}
+
+.gradient-text:hover {
+  background: linear-gradient(90deg, rgba(9,9,121,1) 35%, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-block: 0;
+  transition: background-position 1.8s ease-out;
+  background-size: 100% 200%;
+  background-position: 100% 0%;
+  position: relative;
+}
+
 
 @media screen and (max-width: 768px) {
   .mob-card {

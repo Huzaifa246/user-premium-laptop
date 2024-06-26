@@ -5,16 +5,17 @@ const Loader = () => {
     return (
         <>
             <div style={{
-                height: "100%",
-                width: "100%",
-                background: "rgba(0,0,0,.1)",
-                backdropFilter: "blur(4px)",
-                position: "absolute",
-                top: 0,
-                left: 0,
+                // height: "100%",
+                // width: "100%",
+                // background: "rgba(0,0,0,.1)",
+                // backdropFilter: "blur(4px)",
+                // position: "absolute",
+                // top: 0,
+                // left: 0,
                 display: "flex",
                 justifyContent: "center",
-                alignItems: "center"
+                alignItems: "center",
+                height: "20vh",
             }}>
                 <div style={{
                     height: "80%",

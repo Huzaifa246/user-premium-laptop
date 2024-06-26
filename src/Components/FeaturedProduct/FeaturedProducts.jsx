@@ -27,12 +27,13 @@ const FeaturedProducts = () => {
 
     return (
         <Container>
-            <h3 className="mt-4">Featured Products</h3>
+            <h2 className="mt-4 gradient-text">Featured Products</h2>
             {isLoading ? (
                 <Loader />
             ) : (
                 <Row>
-                    {products.map((product) => (
+                    {/* {products.map((product) => ( */}
+                    {products.slice(0, 4).map((product) => (
                         <FeaturedCards
                             key={product._id}
                             imageUrl1={product.imageUrls[0] || card3}

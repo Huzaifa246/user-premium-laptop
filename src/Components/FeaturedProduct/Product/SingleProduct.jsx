@@ -90,11 +90,15 @@ const SingleProduct = () => {
                     {/* Right section with product details */}
                     <Col xs={12} md={4}>
                         <p className='p-my-store'><sub>MY STORE</sub></p>
-                        <h1 className='h1-product-style'>{name}</h1>
+                        <h1 className='h1-product-style gradient-text'>{name}</h1>
                         {/* <h4>{price}</h4> */}
                         <h4>Rs. {updatedPrice}</h4>
                         <div className="my-3">
                             {variants?.map((variant, index) => (
+                                <>
+                                <b>
+                                Add Ons :
+                                </b>
                                 <Badge
                                     key={index}
                                     className="m-1"
@@ -104,6 +108,7 @@ const SingleProduct = () => {
                                 >
                                     {variant.name} +Rs. {variant.additionalPrice}
                                 </Badge>
+                                </>
                             ))}
                         </div>
                         <a

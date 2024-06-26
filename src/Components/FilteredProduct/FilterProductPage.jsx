@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import fetchAllLaptops from '../../Services/getAllLaptops';
 import Loader from '../Loader/Loader';
 import Footer from '../Footer/footer';
-import { Container, Row, Col, Dropdown, Form, Button, Badge } from 'react-bootstrap';
+import { Container, Row, Col, Dropdown, Form, Button, Badge, Pagination } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import card3 from '../../assets/images/card3.jpg';
 
@@ -16,6 +16,8 @@ const FilterProductPage = () => {
     const [maxPrice, setMaxPrice] = useState('');
     const [showDropdown, setShowDropdown] = useState(false);
     const [selectedBrands, setSelectedBrands] = useState([]);
+    const[currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage] = useState(20);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -34,6 +36,10 @@ const FilterProductPage = () => {
 
         fetchData();
     }, []);
+
+    useEffect(() => {
+        setCurrentPage(1); // Reset to first page when filters change
+    }, [sortOption, minPrice, maxPrice, selectedBrands]);
 
     const handleProductClick = (product) => {
         const productDetailsLink = `/filtered-products/${product._id}`;
@@ -105,11 +111,18 @@ const FilterProductPage = () => {
     const filteredProductsByPrice = filterProductsByPriceRange(sortedProducts, minPrice, maxPrice);
     const filteredAndSortedProducts = filterProductsByBrand(filteredProductsByPrice, selectedBrands);
 
+    // Pagination
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = filteredAndSortedProducts.slice(indexOfFirstItem, indexOfLastItem);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
     const uniqueBrands = [...new Set(products.map(product => product.brand))];
     return (
         <>
             <Container className='mt-4'>
-                <h3>Filtered products</h3>
+                <h2>Filtered products</h2>
                 <div className='d-flex justify-content-between align-items-center mb-3'>
                     <div className='d-flex flex-column'>
                         <span className='py-1'>Filter by:</span>
@@ -161,7 +174,7 @@ const FilterProductPage = () => {
                                             className="m-2"
                                         />
                                     ))}
-                                <Button variant="danger" className="mt-3" onClick={handleResetBrandClick}>Reset</Button>
+                                    <Button variant="danger" className="mt-3" onClick={handleResetBrandClick}>Reset</Button>
                                 </Form.Group>
                             </Dropdown.Menu>
                         </Dropdown>
@@ -180,7 +193,8 @@ const FilterProductPage = () => {
                     <Loader />
                 ) : (
                     <Row className='d-flex flex-wrap mob-wrap mt-5'>
-                        {filteredAndSortedProducts.map((product) => (
+                        {/* {filteredAndSortedProducts.map((product) => ( */}
+                        {currentItems.map((product) => (
                             <Col key={product._id} xs={12} sm={6} md={4} lg={4} className="mb-4">
                                 <div className="card h-100 shadow-sm" onClick={() => handleProductClick(product)}>
                                     <Badge
@@ -192,7 +206,7 @@ const FilterProductPage = () => {
                                     </Badge>
                                     <img src={product.imageUrls[0] || card3} alt={product.name} className="card-img-top img-fluid" />
                                     <div className="card-body">
-                                        <h5 className="card-title">{product.name}</h5>
+                                        <h5 className="card-title gradient-text">{product.name}</h5>
                                         <p className="card-text">{product.ram} RAM</p>
                                         <p className="card-text">{product.processor}</p>
                                         <p className="card-text">{product.year}</p>
@@ -204,6 +218,15 @@ const FilterProductPage = () => {
                                 </div>
                             </Col>
                         ))}
+                        <Pagination className='mt-4 justify-content-center'>
+                            {Array(Math.ceil(filteredAndSortedProducts.length / itemsPerPage))
+                                .fill()
+                                .map((_, index) => (
+                                    <Pagination.Item key={index + 1} active={index + 1 === currentPage} onClick={() => paginate(index + 1)}>
+                                        {index + 1}
+                                    </Pagination.Item>
+                                ))}
+                        </Pagination>
                     </Row>
                 )}
             </Container>

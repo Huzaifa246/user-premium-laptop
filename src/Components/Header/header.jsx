@@ -88,10 +88,10 @@
                                 </Dropdown>
                             </li>
                             <li className="nav-item">
-                                <a className={`nav-link txt-white pd-5 ${location.pathname === '/gaming-laptops' ? 'active' : ''}`} aria-current="page" href="/gaming-laptops">Gaming Laptops</a>
+                                <a className={`nav-link txt-white pd-5 ${location.pathname === '/gaming-laptops' ? 'active' : ''}`} aria-current="page" href="/">Gaming Laptops</a>
                             </li>
                             <li className="nav-item">
-                                <a className={`nav-link txt-white pd-5 ${location.pathname === '/about-us' ? 'active' : ''}`} aria-current="page" href="/about-us">About Us</a>
+                                <a className={`nav-link txt-white pd-5 ${location.pathname === '/about-us' ? 'active' : ''}`} aria-current="page" href="/">About Us</a>
                             </li>
                         </ul>
 
