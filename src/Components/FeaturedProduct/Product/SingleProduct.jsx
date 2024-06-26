@@ -94,20 +94,20 @@ const SingleProduct = () => {
                         {/* <h4>{price}</h4> */}
                         <h4>Rs. {updatedPrice}</h4>
                         <div className="my-3">
+                            <b>
+                                Add Ons :
+                            </b>
                             {variants?.map((variant, index) => (
                                 <>
-                                <b>
-                                Add Ons :
-                                </b>
-                                <Badge
-                                    key={index}
-                                    className="m-1"
-                                    bg={selectedVariants.includes(variant.name) ? 'primary' : 'secondary'}
-                                    onClick={() => handleVariantClick(variant)}
-                                    style={{ cursor: 'pointer' }}
-                                >
-                                    {variant.name} +Rs. {variant.additionalPrice}
-                                </Badge>
+                                    <Badge
+                                        key={index}
+                                        className="m-1"
+                                        bg={selectedVariants.includes(variant.name) ? 'primary' : 'secondary'}
+                                        onClick={() => handleVariantClick(variant)}
+                                        style={{ cursor: 'pointer' }}
+                                    >
+                                        {variant.name} +Rs. {variant.additionalPrice}
+                                    </Badge>
                                 </>
                             ))}
                         </div>
